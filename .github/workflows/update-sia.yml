@@ -1,7 +1,7 @@
 on:    
   workflow_dispatch:
 
-name: update-sinan
+name: update-sia
 
 jobs:
   
@@ -33,7 +33,7 @@ jobs:
           extra-packages: | 
             googleCloudStorageR, RCurl, stringr, tidyr, arrow, fs, read.dbc, bigrquery
             
-      - name: Update Sia
+      - name: Update SIA
         run: |
           source("code/download_upload_sia.R")
         shell: Rscript {0} 
