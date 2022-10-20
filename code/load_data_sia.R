@@ -2,7 +2,7 @@ library(bigrquery)
 
 bq_auth(path = 'gcp-auth-dev.json')
 
-bq_dataset_create("opensus-dev.sia")
+#bq_dataset_create("opensus-dev.sia")
 
 bq_perform_query("
   LOAD DATA OVERWRITE sia.pa_sergipe
