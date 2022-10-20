@@ -10,5 +10,3 @@ bq_perform_query("
   format = 'parquet',
   uris = ['gs://opensus-dev/br_ms_sia/pase/data/*parquet']);",
   "opensus-dev")
-
-

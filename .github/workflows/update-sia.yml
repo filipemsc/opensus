@@ -1,0 +1,47 @@
+on:    
+  workflow_dispatch:
+  
+  schedule: 
+    - cron: "0 0 */3 * *"
+
+name: update-sia
+
+jobs:
+  
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create JSON
+        shell: bash
+        env:
+          GCP_AUTH: ${{ secrets.GCP_AUTH }}
+          GCP_AUTH_OPENSUS_DEV: ${{ secrets.GCP_AUTH_OPENSUS_DEV }}
+        run: |
+            echo $GCP_AUTH_OPENSUS_DEV > gcp-auth-dev.json
+            ls -l
+            
+      - uses: r-lib/actions/setup-r@master
+        with:
+          r-version: ${{ matrix.config.r }}
+          http-user-agent: ${{ matrix.config.http-user-agent }}
+      - uses: r-lib/actions/setup-pandoc@master
+      
+      - name: Install Curl
+        run: sudo apt-get install libcurl4-openssl-dev
+        
+      - uses: r-lib/actions/setup-r-dependencies@v1
+        with:
+          extra-packages: | 
+            googleCloudStorageR, RCurl, stringr, tidyr, arrow, fs, read.dbc, bigrquery
+            
+      - name: Update SIA
+        run: |
+          source("code/download_upload_sia.R")
+        shell: Rscript {0} 
+
+      - name: Generate table
+        run: |
+            source("code/load_data_sia.R")
+        shell: Rscript {0}
