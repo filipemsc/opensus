@@ -39,10 +39,10 @@ jobs:
             
       - name: Update SIA
         run: |
-          source("code/download_upload_sia.R")
+          source("code/fetch_sia/download_upload_sia.R")
         shell: Rscript {0} 
 
       - name: Generate table
         run: |
-            source("code/load_data_sia.R")
+            source("code/fetch_sia/load_data_sia.R")
         shell: Rscript {0}
