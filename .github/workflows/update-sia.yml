@@ -32,7 +32,7 @@ jobs:
       - name: Install Curl
         run: sudo apt-get install libcurl4-openssl-dev
         
-      - uses: r-lib/actions/setup-r-dependencies@v1
+      - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: | 
             googleCloudStorageR, RCurl, stringr, tidyr, arrow, fs, read.dbc, bigrquery
