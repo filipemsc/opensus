@@ -1,3 +1,5 @@
+options(timeout=99999999)
+
 library(googleCloudStorageR)
 
 gcs_auth("gcp-auth-dev.json")
