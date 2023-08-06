@@ -1,4 +1,5 @@
 options(timeout=300)
+getOption("timeout")
 
 library(googleCloudStorageR)
 
