@@ -1,4 +1,4 @@
-options(timeout=300)
+options(timeout=800)
 getOption("timeout")
 
 library(googleCloudStorageR)
@@ -73,7 +73,7 @@ download_upload_sia <- function(sigla_sia,
       name_schema <- paste0(gsub(".dbc", "",fs::path_file(link)),"_schema.csv")
       
       temp <- tempfile()
-      download.file(link, temp, mode = "wb", timeout=300)
+      download.file(link, temp, mode = "wb", timeout=800)
       partial <- read.dbc::read.dbc(temp)
       partial <- lapply(partial, as.character) |> data.frame()
       arrow::write_parquet(partial,name_data)
