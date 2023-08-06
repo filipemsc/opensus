@@ -1,4 +1,4 @@
-options(timeout=99999999)
+options(timeout=300)
 
 library(googleCloudStorageR)
 
@@ -72,7 +72,7 @@ download_upload_sia <- function(sigla_sia,
       name_schema <- paste0(gsub(".dbc", "",fs::path_file(link)),"_schema.csv")
       
       temp <- tempfile()
-      download.file(link, temp, mode = "wb")
+      download.file(link, temp, mode = "wb", timeout=300)
       partial <- read.dbc::read.dbc(temp)
       partial <- lapply(partial, as.character) |> data.frame()
       arrow::write_parquet(partial,name_data)
@@ -108,3 +108,5 @@ check <- download_upload_sia("PASP")
 
 if(length(unlist(check))==0){print("Nenhum arquivo atualizado.")}
 if(length(unlist(check))> 0){print(paste("Arquivo atualizado:", unlist(check)))}
+
+??download.file
