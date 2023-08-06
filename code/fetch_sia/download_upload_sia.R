@@ -102,7 +102,7 @@ download_upload_sia <- function(sigla_sia,
   
 }
 
-check <- download_upload_sia("PASE")
+check <- download_upload_sia("PASP")
 
 if(length(unlist(check))==0){print("Nenhum arquivo atualizado.")}
 if(length(unlist(check))> 0){print(paste("Arquivo atualizado:", unlist(check)))}
